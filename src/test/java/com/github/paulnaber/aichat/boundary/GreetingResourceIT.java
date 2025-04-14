@@ -1,4 +1,4 @@
-package org.acme;
+package com.github.paulnaber.aichat.boundary;
 
 import io.quarkus.test.junit.QuarkusIntegrationTest;
 
