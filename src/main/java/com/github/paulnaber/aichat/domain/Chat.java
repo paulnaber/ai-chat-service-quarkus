@@ -1,29 +1,27 @@
-package com.github.paulnaber.aichat;
+package com.github.paulnaber.aichat.domain;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Table;
 
-/**
- * Example JPA entity defined as a Panache Entity.
- * An ID field of Long type is provided, if you want to define your own ID field extends <code>PanacheEntityBase</code>
- * instead.
- *
- * This uses the active record pattern, you can also use the repository pattern instead:
- * .
- *
- * Usage (more example on the documentation)
- *
- * {@code
- *     public void doSomething() {
- *         MyEntity entity1 = new MyEntity();
- *         entity1.field = "field-1";
- *         entity1.persist();
- *
- *         List<MyEntity> entities = MyEntity.listAll();
- * }
- * }
- */
 @Entity
-public class MyEntity extends PanacheEntity {
-    public String field;
+@Table(name = "chats")
+public class Chat extends PanacheEntity {
+
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    public String id;
+
+    @Column(name = "user_id")
+    public String userId;
+
+    // TODO add default value
+    @Column(name = "title")
+    public String title;
+
+    // TODO add default value
+    public String lastActiveDate;
 }
