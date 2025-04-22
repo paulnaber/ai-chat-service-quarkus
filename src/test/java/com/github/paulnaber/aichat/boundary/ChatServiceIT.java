@@ -5,17 +5,17 @@ import static org.hamcrest.CoreMatchers.is;
 
 import org.junit.jupiter.api.Test;
 
-import io.quarkus.test.junit.QuarkusIntegrationTest;
+import io.quarkus.test.junit.QuarkusTest;
 
-@QuarkusIntegrationTest
+@QuarkusTest
 class ChatServiceIT {
 
     @Test
-    void testHelloEndpoint() {
+    void testGetChatsEndpoint() {
         given()
                 .when().get("/v1/chats")
                 .then()
                 .statusCode(200)
-                .body(is("Hello from Quarkus REST GET"));
+                .body(is("Hello World"));
     }
 }

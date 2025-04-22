@@ -1,7 +1,15 @@
 package com.github.paulnaber.aichat.boundary;
 
+import java.util.List;
+
+import org.eclipse.microprofile.openapi.annotations.parameters.RequestBody;
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 
+import com.github.paulnaber.aichat.boundary.dto.ChatDto;
+import com.github.paulnaber.aichat.control.ChatController;
+
+import jakarta.inject.Inject;
+import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
@@ -10,15 +18,30 @@ import jakarta.ws.rs.core.MediaType;
 
 @Path("/v1/chats")
 @Tag(name = "Chats", description = "Endpoints for managing user chat sessions")
-public interface ChatService {
+@Produces(MediaType.TEXT_PLAIN)
+@Consumes(MediaType.TEXT_PLAIN)
+public class ChatService {
+
+    private final ChatController chatController;
+
+    @Inject
+    public ChatService(ChatController chatController) {
+        this.chatController = chatController;
+    }
+
+
 
     @GET
-    @Produces(MediaType.TEXT_PLAIN)
-    String getChats();
+    @Path("")
+    public List<ChatDto> getChats() {
+        return this.chatController.getAllChats();
+    };
 
 
 
     @POST
-    @Produces(MediaType.TEXT_PLAIN)
-    String createChats();
+    @Path("")
+    public ChatDto createChats(@RequestBody(name = "content", description = "New request message") String content) {
+        return chatController.createChat(content);
+    };
 }
