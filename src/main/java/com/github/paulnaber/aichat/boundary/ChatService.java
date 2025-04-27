@@ -18,8 +18,8 @@ import jakarta.ws.rs.core.MediaType;
 
 @Path("/v1/chats")
 @Tag(name = "Chats", description = "Endpoints for managing user chat sessions")
-@Produces(MediaType.TEXT_PLAIN)
 @Consumes(MediaType.TEXT_PLAIN)
+@Produces(MediaType.APPLICATION_JSON)
 public class ChatService {
 
     private final ChatController chatController;
