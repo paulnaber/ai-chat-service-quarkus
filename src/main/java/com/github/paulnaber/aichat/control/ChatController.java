@@ -15,15 +15,18 @@ import jakarta.inject.Inject;
 
 @ApplicationScoped
 public class ChatController {
-    private final JsonWebToken   jwt;
-    private final ChatMapper     chatMapper;
-    private final ChatRepository chatRepository;
+    private final JsonWebToken      jwt;
+    private final ChatMapper        chatMapper;
+    private final ChatRepository    chatRepository;
+    private final MessageController messageController;
 
     @Inject
-    public ChatController(final JsonWebToken jwt, final ChatMapper cMapper, final ChatRepository chatRepository) {
+    public ChatController(final JsonWebToken jwt, final ChatMapper cMapper, final ChatRepository chatRepository,
+            final MessageController messageController) {
         this.jwt = jwt;
         this.chatMapper = cMapper;
         this.chatRepository = chatRepository;
+        this.messageController = messageController;
     }
 
 
@@ -32,6 +35,8 @@ public class ChatController {
         System.out.println("create Chat: " + content);
         Chat c = createChatFromString(content);
         Chat persistedChat = this.chatRepository.createChat(c);
+        // create the message
+        this.messageController.createMessage(content, persistedChat.getId());
         return this.chatMapper.mapEntityToDto(persistedChat);
     }
 
