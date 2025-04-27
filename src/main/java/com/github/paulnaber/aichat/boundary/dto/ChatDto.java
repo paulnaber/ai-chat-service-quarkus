@@ -1,16 +1,16 @@
 package com.github.paulnaber.aichat.boundary.dto;
 
+import java.time.LocalDateTime;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class ChatDto {
-    private String id;
-    private String title;
+    private int           id;
+    private String        title;
     private LocalDateTime lastActiveDate;
 }
