@@ -57,8 +57,7 @@ public class ChatController {
         Chat c = new Chat();
         c.setLastActiveDate(LocalDateTime.now());
         c.setTitle(content);
-        // c.setUserId(getUserEmail()); // TODO 
-        c.setUserId("paul.naber@todo.de");
+        c.setUserId(getUserEmail());
         return c;
     }
 

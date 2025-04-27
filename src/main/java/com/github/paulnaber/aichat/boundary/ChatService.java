@@ -8,6 +8,7 @@ import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 import com.github.paulnaber.aichat.boundary.dto.ChatDto;
 import com.github.paulnaber.aichat.control.ChatController;
 
+import io.quarkus.security.Authenticated;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.GET;
@@ -20,6 +21,7 @@ import jakarta.ws.rs.core.MediaType;
 @Tag(name = "Chats", description = "Endpoints for managing user chat sessions")
 @Consumes(MediaType.TEXT_PLAIN)
 @Produces(MediaType.APPLICATION_JSON)
+@Authenticated
 public class ChatService {
 
     private final ChatController chatController;

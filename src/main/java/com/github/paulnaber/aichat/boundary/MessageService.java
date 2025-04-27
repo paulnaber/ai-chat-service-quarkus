@@ -6,6 +6,7 @@ import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 import com.github.paulnaber.aichat.boundary.dto.MessageDto;
 import com.github.paulnaber.aichat.control.MessageController;
 
+import io.quarkus.security.Authenticated;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.GET;
@@ -19,6 +20,7 @@ import jakarta.ws.rs.core.MediaType;
 @Tag(name = "Messages", description = "Endpoints for sending and retrieving messages within chats")
 @Consumes(MediaType.TEXT_PLAIN)
 @Produces(MediaType.APPLICATION_JSON)
+@Authenticated
 public class MessageService {
 
     private final MessageController messageController;

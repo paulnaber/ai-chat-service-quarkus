@@ -53,8 +53,7 @@ public class MessageController {
         m.setContent(content);
         m.setChatId(chatId);
         m.setSenderType("TODO");
-        // c.setUserId(getUserEmail()); // TODO 
-        m.setUserId("paul.naber@todo.de");
+        m.setUserId(getUserEmail());
         return m;
     }
 
